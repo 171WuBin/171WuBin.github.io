@@ -400,6 +400,11 @@
 <h3 id="vue的响应式原理"><a href="#vue的响应式原理" class="headerlink" title="vue的响应式原理"></a>vue的响应式原理</h3><ul>
 <li>vue.js是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProprety()来劫持各个数据的setter和getter，在数据变动时发布信息给订阅者，触发相应的监听回调来渲染视图</li>
 </ul>
+<h3 id="v-if和v-show的区别"><a href="#v-if和v-show的区别" class="headerlink" title="v-if和v-show的区别"></a>v-if和v-show的区别</h3><ul>
+<li>1.原理：<br>  v-if是元素的添加和删除<br>  v-show是display的显示与隐藏</li>
+<li>2.性能：<br>  v-if有更高的切换消耗，<br>  v-show有更高的初始渲染消耗</li>
+<li>3.使用场景：<br>  v-if适合不需要频繁切换的场景<br>  v-show适合频繁切换的场景</li>
+</ul>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 
                 
