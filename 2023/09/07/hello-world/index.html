@@ -409,6 +409,7 @@
 <li>通过js创建一个Object对象来模拟真实DOM结构，这个对象包含标签名(tag)、属性(attrs)、和子元素对象(children)三个属性,通过vue中的(软的儿)render()函数把虚拟DOM编译成真实DOM，再通过appendChild()添加到页面中</li>
 <li>虚拟DOM最大的优势就是diff算法，减少JavaScript操作真实DOM带来的性能消耗</li>
 </ul>
+<h3 id="methods和computed两者有什么异同"><a href="#methods和computed两者有什么异同" class="headerlink" title="methods和computed两者有什么异同"></a>methods和computed两者有什么异同</h3><p>共同点：两者内部书写的都是方法<br>不同点：<br>1.computed有缓存，多次调用只执行一次，而methods中没有缓存，多次调用会执行多次<br>2.computed在页面中使用时不需要加括号，methods使用时需要加括号</p>
 <p>More info: <a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">Writing</a></p>
 
                 
