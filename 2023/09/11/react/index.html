@@ -501,8 +501,8 @@ componentWillMount  render挂载之前调用
 <h3 id="thissetstate不可以在哪里使用"><a href="#thissetstate不可以在哪里使用" class="headerlink" title="thissetstate不可以在哪里使用"></a>thissetstate不可以在哪里使用</h3><p>componentWillMount中执行,组件只挂载一次，在 componentWillMount里 setState 会但是仅会更新 state 一次，<br>componentWillUnmount中执行 setState 不会更新 state，是不生效而且无意义的<br>禁止在 shouldComponentUpdate 和 componentWillUpdate中调用setState，这会造成循环调用，<br>render函数也不行，会触发死循环导致内存崩溃</p>
 <h3 id="hooks使用有哪些限制"><a href="#hooks使用有哪些限制" class="headerlink" title="hooks使用有哪些限制"></a>hooks使用有哪些限制</h3><p>不能在循环语句, 条件语句, 或者嵌套函数中调用 Hooks 函数,<br>仅在函数组件和自定义 hooks 函数中调用 hooks 函数 不能在其他普通函数中调用</p>
 <h3 id="react和vue的相似和差异有哪些"><a href="#react和vue的相似和差异有哪些" class="headerlink" title="react和vue的相似和差异有哪些"></a>react和vue的相似和差异有哪些</h3><p>区别：<br>vue 通过Templating模板渲染<br>react 通过JSX渲染<br>vue是双向绑定<br>react是单项绑定<br>单向绑定：插值形式， v-bind也是单向绑定。<br>双向绑定：表单v-model，用户对view层的更改会直接同步到model层。（实际上v-model只是v-bind:value 和 v-on:input的语法糖）<br>Vue是MVVM模式的一种方式实现。但没有完全遵循 MVVM 模型。<br>React是前端组件化框架，是严格的view层，MVC模式。由后端组件化发展而来。<br>相似：<br>都是单向数据流<br>组件化<br>虚拟dom</p>
-<h3 id="更新阶段的钩子函数中，改变状态应该怎么处理"><a href="#更新阶段的钩子函数中，改变状态应该怎么处理" class="headerlink" title="更新阶段的钩子函数中，改变状态应该怎么处理"></a>更新阶段的钩子函数中，改变状态应该怎么处理</h3><p>进行if判断，否则会陷入递归更新而报错<br>可以将上一次的props（prevProps）和本次接收到的props做一个比较后再调用
-  </p>
+<h3 id="更新阶段的钩子函数中，改变状态应该怎么处理"><a href="#更新阶段的钩子函数中，改变状态应该怎么处理" class="headerlink" title="更新阶段的钩子函数中，改变状态应该怎么处理"></a>更新阶段的钩子函数中，改变状态应该怎么处理</h3><p>进行if判断，否则会陷入递归更新而报错<br>可以将上一次的props（prevProps）和本次接收到的props做一个比较后再调用</p>
+<p>More info: <a target="_blank" rel="noopener" href="https://react.docschina.org/learn">Writing</a></p>
 
                 
             </div>
