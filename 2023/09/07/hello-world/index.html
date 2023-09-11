@@ -411,6 +411,86 @@
 </ul>
 <h3 id="常见的vue指令有哪些，以及作用"><a href="#常见的vue指令有哪些，以及作用" class="headerlink" title="常见的vue指令有哪些，以及作用"></a>常见的vue指令有哪些，以及作用</h3><p>1.v-once:只会初始渲染一次数据，渲染完之后该标签里面的数据不再进行响应式改变<br>2.v-html&#x3D;”变量”:可以解析数据中的html代码<br>3.v-text&#x3D;”变量”:不会解析html代码该标签内原有的内容会被替换掉<br>4.v-pre:不对具有v-pre属性的标签内容做解析，不会解析插值表达式当作标签内容输出<br>5.v-cloak:解决浏览器刷新时页面插值闪烁问题<br>6.v-bind:是动态修改标签的属性<br>7.v-if v-else v-else if：条件渲染<br>8.v-show:控制元素的显示和隐藏,使用的是css的display属性来控制<br>9.v-on：绑定事件可以简写成@<br>10.v-model：表单双向数据绑定<br>11.v-for：列表渲染</p>
 <h3 id="methods和computed两者有什么异同"><a href="#methods和computed两者有什么异同" class="headerlink" title="methods和computed两者有什么异同"></a>methods和computed两者有什么异同</h3><p>共同点：两者内部书写的都是方法<br>不同点：<br>1.computed有缓存，多次调用只执行一次，而methods中没有缓存，多次调用会执行多次<br>2.computed在页面中使用时不需要加括号，methods使用时需要加括号</p>
+<h3 id="Vue的生命周期函数有哪些"><a href="#Vue的生命周期函数有哪些" class="headerlink" title="Vue的生命周期函数有哪些"></a>Vue的生命周期函数有哪些</h3><p>beforeCreate    初始化前 vue实例开始准备加载data&#x2F;methods…<br>created  （(科瑞忒的)   初始化后 vue实例加载完data&#x2F;menthods… 进行网路请求拿到页面数据<br>beforeMount     挂载前 将vue实例挂载到某个DOM元素前<br>mounted (猫特的)    挂载后 将vue实例挂载到某个DOM元素完成，这时才可以对DOM进行操作<br>beforeUpdate    更新前<br>updated(奥普得体的)     更新后<br>beforeDestroy(斯蒂坠)   销毁前<br>destroyed(斯蒂坠的)   销毁后</p>
+<h3 id="“组件之间如何传值”"><a href="#“组件之间如何传值”" class="headerlink" title="“组件之间如何传值”,"></a>“组件之间如何传值”,</h3><p>父传子数据<br>    1.在父组件的子组件标签上自定义一个属性，属性值就是给子组件传递的数据<br>    2.在子组件内通过props属性来接受父组件传递过来的数据<br>    3.在子组件内就可以使用传递的数据<br>子传父数据<br>    1.在子组件的事件函数中通过this.$emit()方法，向父组件发出一个自定义事件，同时携带数据<br>    2.在父组件的子组件标签上通过v-on监听子组件发出的自定义事件<br>    3.在父组件的事件触发函数中可以接收到一个参数，该参数就是子组件传递过来的数据<br>非父子组件之间的通信<br>    1.新建一个bus.js文件，该文件需要导出一个空的vue实例<br>    2.将bus.js引入到main.js中，并将bus空实例挂载到Vue的原型对象中<br>    3.在需要传出数据的组件中使用this.$bus.$emit()来发出自定义事件并传值<br>    4.在需要接收数据的组件中使用this.$bus.$on()来监听值</p>
+<h3 id="“组件中的data为什么必须是函数”"><a href="#“组件中的data为什么必须是函数”" class="headerlink" title="“组件中的data为什么必须是函数”,"></a>“组件中的data为什么必须是函数”,</h3><p>组件中的data为什么必须是一个函数？<br>    项目中根组件(也就是App.vue)中的data可以是函数也可以是对象，因为每一个项目的根组件有且只有一个<br>    项目中除了根组件以外的其他组件data只能是函数，不能是对象，<br>    原因是组件具有可复用性，一旦使用对象类型，多个组件复用时会造成数据共享，不利于数据的复用，<br>    而写成函数类型后，每一次复用组件都会生成一个全新的data对象，这样组件之间的数据不会相互影响</p>
+<h3 id="“如何实现URL改变保持页面不刷新”"><a href="#“如何实现URL改变保持页面不刷新”" class="headerlink" title="“如何实现URL改变保持页面不刷新”,"></a>“如何实现URL改变保持页面不刷新”,</h3><pre><code>1.location.hash=&quot;/about&quot; 来修改路径
+2.history.pushState(&#39;state&#39;,title,&#39;url&#39;) 来修改路径 
+  history.replaceState(state,title,url)
+  ### this.$router 与 this.$route 区别
+</code></pre>
+<p> $router 表示的永远是路由的实例对象<br> $route 表示的是当前处于活跃状态的路由信息</p>
+<h3 id="如何实现动态路由绑定"><a href="#如何实现动态路由绑定" class="headerlink" title="如何实现动态路由绑定"></a>如何实现动态路由绑定</h3><p> 1.在path路径后面使用:来定义值<br> 2.在跳转时可以随意传入想要的数据作为动态路径<br> 3.在 this.$router.params可以接受到动态传递的内容</p>
+<h3 id="什么是路由懒加载及作用"><a href="#什么是路由懒加载及作用" class="headerlink" title="什么是路由懒加载及作用"></a>什么是路由懒加载及作用</h3><p>在正常打包后的js文件中</p>
+<ol>
+<li>app.js ：打包的是开放时所有编写的js代码</li>
+<li>vendor.js : 打包的所有的第三方代码</li>
+<li>manifest.js : 打包代码做底层支撑的js文件<br>作用：把不同路由对应的组件分割成不同的js代码块，<br>然后当路由被访问时才会按需加载对应的js代码块，不被访问时就不会加载，</li>
+</ol>
+<h3 id="什么是路由懒加载及作用-1"><a href="#什么是路由懒加载及作用-1" class="headerlink" title="什么是路由懒加载及作用"></a>什么是路由懒加载及作用</h3><ol>
+<li>也叫延迟加载，即在需要的时候进行加载，随用随载。 </li>
+<li>使用懒加载的原因： vue 是单页面应用，使用webpack打包后的文件很大，会使进入首页时，加载的资源过多，页面会出现白屏的情况，不利于用户体验。运用懒加载后，就可以按需加载页面，提高用户体验<br>这样就可以提高页面首次加载的速度</li>
+</ol>
+<h3 id="路由模式有几种，分别是什么及如何转换"><a href="#路由模式有几种，分别是什么及如何转换" class="headerlink" title="路由模式有几种，分别是什么及如何转换"></a>路由模式有几种，分别是什么及如何转换</h3><ol>
+<li>hash模式 ：默认模式，在浏览器的URL中会有#</li>
+<li>history模式 ：在路由实例中添加 model属性 属性值设置为history，这种模式url中没有#</li>
+</ol>
+<h3 id="路由的跳转方法有哪些，及区别"><a href="#路由的跳转方法有哪些，及区别" class="headerlink" title="路由的跳转方法有哪些，及区别"></a>路由的跳转方法有哪些，及区别</h3><ol>
+<li>this.$router.push() 保留历史记录</li>
+<li>this.$router.replace() 不保留历史记录</li>
+</ol>
+<h3 id="路由传递参数的方式有哪些，及其区别"><a href="#路由传递参数的方式有哪些，及其区别" class="headerlink" title="路由传递参数的方式有哪些，及其区别"></a>路由传递参数的方式有哪些，及其区别</h3><ul>
+<li>params传参<br>  跳转时必须使用name属性进行跳转，不能使用path<br>  静态路由通过params传参，页面一旦刷新则数据会丢失<br>  params传参类似于post请求传参，参数不会出现在url地址中<br>  如果希望页面刷新数据不丢失则可以使用动态路由</li>
+<li>query传参<br>  跳转方式使用name和path都可以传参<br>  类似于get传参，数据会以查询字符串形式暴露在url地址栏中<br>  页面刷新不会丢失数据</li>
+</ul>
+<h3 id="路由的导航守卫有哪些"><a href="#路由的导航守卫有哪些" class="headerlink" title="路由的导航守卫有哪些"></a>路由的导航守卫有哪些</h3><ul>
+<li>全局前置守卫 router.beforeEach()<br>  回调函数中有三个参数</li>
+<li>全局后置守卫 router.afterEach()</li>
+<li>全局解析守卫 router.beforeResolve()<br> 和全局前置守卫类似，但是全局前置守卫是在路由跳转的一瞬间触发，<br> 而全局解析守卫是在路由确认之前，在即将进入的路由组件及其所有的内部组件全部解析完成后执行</li>
+<li>路由独享守卫</li>
+<li>beforeEnter:(to,from,next)&#x3D;&gt;{}</li>
+<li>组件内的守卫</li>
+<li>beforeRouteEnter 对访问用户进行权限校验<br> 在进入组件之前，这个函数是无法访问this当前实例的<br> next调用时，可以传递一个回调函数，该回调接收一个参数，参数就是当前组件的实例，只有这个函数内的next可以使用回调，其他函数都无法使用</li>
+<li>beforeRouteUpdate:()&#x3D;&gt;{} 在路由的路径发生改变但组件没有更改时需要执行的操作</li>
+<li>beforeRouteLeave:()&#x3D;&gt;{} 通常情况下是为了预防用户还未保存就离开进行的操作</li>
+</ul>
+<h3 id="路由导航守卫的回调函数中有几个参数，分别代表什么意思"><a href="#路由导航守卫的回调函数中有几个参数，分别代表什么意思" class="headerlink" title="路由导航守卫的回调函数中有几个参数，分别代表什么意思"></a>路由导航守卫的回调函数中有几个参数，分别代表什么意思</h3><p>to ：目的地的路由<br>from ：起始地路由信息<br>next ：如果允许进入调用next方法，不允许则不调用，也可以传入一个其他路径参数跳转</p>
+<h3 id="keep-alive组件的使用"><a href="#keep-alive组件的使用" class="headerlink" title="keep-alive组件的使用"></a>keep-alive组件的使用</h3><p>被keep-alive组件包裹的内容会被缓存，不会销毁，一般配合路由使用,该组件有两个属性<br>include：表示包含哪些组件 这里要填写的是组件的name属性名<br>exclude：表示排除哪些组件<br>注意：include和exclude两者之间不能同时存在</p>
+<h3 id="nextTick方法的使用"><a href="#nextTick方法的使用" class="headerlink" title="$nextTick方法的使用"></a>$nextTick方法的使用</h3><ul>
+<li>nextTick函数中的回调会在DOM更新完毕后进行执行回调，一般情况下在created生命周期中操作DOM必须使用，还有在更新DOM操作，确保更新完成后使用</li>
+</ul>
+<h3 id="set方法的使用"><a href="#set方法的使用" class="headerlink" title="$set方法的使用"></a>$set方法的使用</h3><p>当一个引用数据类型的数据添加新属性时，数据添加了，但页面不会响应式改变，这时候我们可以通过this.$set方法进行新属性的添加，从而达到响应式变化的效果</p>
+<h3 id="refs属性的作用"><a href="#refs属性的作用" class="headerlink" title="$refs属性的作用"></a>$refs属性的作用</h3><ul>
+<li>可以在组件名或标签名上添加一个ref属性，通过this.$refs.名字 可以获取对应ref属性的组件或DOM元素</li>
+</ul>
+<h3 id="Vuex核心有哪些"><a href="#Vuex核心有哪些" class="headerlink" title="Vuex核心有哪些"></a>Vuex核心有哪些</h3><ul>
+<li>state：存放共用数据</li>
+<li>mutations：用来修改state中的同步数据数据，名字全大写</li>
+<li>actions：用来使用mutations，修改state中的数据</li>
+<li>getters：获取state里的数据，如果需要对数据进行计算可以使用</li>
+<li>modules：Vuex模块化管理，也可以用来写数据，模块中的state允许有重名数据出现，但是mutations及actions中不允许有重名的方法名出现</li>
+</ul>
+<h3 id="mutations和actions的区别"><a href="#mutations和actions的区别" class="headerlink" title="mutations和actions的区别"></a>mutations和actions的区别</h3><p>1.mutations只能处理同步任务，actions可以处理同步和异步<br>2.mutations方法中第一个参数是state对象，actions方法中第一参数是store实例对象<br>3.mutations方法在组件中使用commit调用，actions方法在组件中使用dispatch调用<br>4.mutations方法在组件中无法使用.then回调监听，actions可以使用.then回调监听</p>
+<h3 id="Vuex的执行流程"><a href="#Vuex的执行流程" class="headerlink" title="Vuex的执行流程"></a>Vuex的执行流程</h3><ul>
+<li>在组件中通过dispatch调用actions中的方法，在actions方法中通过commit调用mutations中的方法，在mutations中借助于mutate来修改state中的数据，在state中的数据可以通过render函数在组件中进行响应式渲染</li>
+</ul>
+<h3 id="组件之间数据传递方式有哪些"><a href="#组件之间数据传递方式有哪些" class="headerlink" title="组件之间数据传递方式有哪些"></a>组件之间数据传递方式有哪些</h3><ul>
+<li>本地存储</li>
+<li>组件传值</li>
+<li>路由传值</li>
+<li>Vuex</li>
+</ul>
+<h3 id="Vuex中的辅助函数"><a href="#Vuex中的辅助函数" class="headerlink" title="Vuex中的辅助函数"></a>Vuex中的辅助函数</h3><ul>
+<li>mapState</li>
+<li>mapMutations</li>
+<li>mapActions</li>
+<li>mapGetters</li>
+</ul>
+<h3 id="如何让Vuex中的状态持久化"><a href="#如何让Vuex中的状态持久化" class="headerlink" title="如何让Vuex中的状态持久化"></a>如何让Vuex中的状态持久化</h3><ul>
+<li>安装<br>npm i vuex-persistedstate 或 yarn add vuex-persistedstate</li>
+<li>使用<br>import导入插件<br>在plugins配置插件</li>
+</ul>
+<h3 id="transition组件中的类名有哪些及作用"><a href="#transition组件中的类名有哪些及作用" class="headerlink" title="transition组件中的类名有哪些及作用"></a>transition组件中的类名有哪些及作用</h3><p>  v-enter：表示进入过渡的开始状态<br>  v-enter-to：表示进入过渡的结束状态<br>  v-enter-active：表示进入过渡生效时的状态<br>  v-leave：表示离开过渡的开始阶段<br>  v-leave-to：表示离开过渡的结束状态<br>  v-leave-active：表示离开过渡生效时的状态</p>
 <p>More info: <a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">Writing</a></p>
 
                 
