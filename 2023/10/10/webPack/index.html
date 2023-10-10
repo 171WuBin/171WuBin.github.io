@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="React, Cherish">
-    <meta name="description" content="React 可以改变你对可见设计和应用构建的思考。当你使用 React 构建用户界面时，你首先会把它分解成一个个 组件，然后，你需要把这些组件连接在一起，使数据流经它们。在本教程中，我们将引导你使用 React 构建一个可搜索的产品数据表。">
+    <meta name="keywords" content="webPack, Cherish">
+    <meta name="description" content="手写webpack核心原理一、核心打包原理1.1 打包的主要流程如下1.2 具体细节二、基本准备工作三、获取模块内容四、分析模块五、收集依赖六、ES6转成ES5（AST）七、递归获取所有依赖八、处理两个关键字
+一、核心打包原理1.1 打包的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>React | Cherish</title>
+    <title>webPack | Cherish</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -334,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">React</h1>
+                    <h1 class="description center-align post-title">webPack</h1>
                 </div>
             </div>
         </div>
@@ -363,8 +364,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/React/">
-                                <span class="chip bg-color">React</span>
+                            <a href="/tags/webPack/">
+                                <span class="chip bg-color">webPack</span>
                             </a>
                         
                     </div>
@@ -379,7 +380,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-11
+                    2023-10-10
                 </div>
                 
 
@@ -400,113 +401,114 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>React 可以改变你对可见设计和应用构建的思考。当你使用 React 构建用户界面时，你首先会把它分解成一个个 组件，然后，你需要把这些组件连接在一起，使数据流经它们。在本教程中，我们将引导你使用 React 构建一个可搜索的产品数据表。</p>
-<h3 id="1-对-react-的理解-？"><a href="#1-对-react-的理解-？" class="headerlink" title="1. 对 react 的理解 ？"></a>1. 对 react 的理解 ？</h3><pre><code>React，用于构建用户界面的 JavaScript 库，只提供了 UI 层面的解决方案
-遵循组件设计模式、声明式编程范式和函数式编程概念，以使前端应用程序更高效
-使用虚拟 DOM 来有效地操作 DOM，遵循从高阶组件到低阶组件的单向数据流
-帮助我们将界面成了各个独立的小块，每一个块就是组件，这些组件之间可以组合、嵌套，构成整体页面
-react 类组件使用一个名为 render() 的方法或者函数组件return，接收输入的数据并返回需要展示的内容
-</code></pre>
-<h3 id="2-函数组件类组件的使用-？组件的定义注意事项？"><a href="#2-函数组件类组件的使用-？组件的定义注意事项？" class="headerlink" title="2. 函数组件类组件的使用 ？组件的定义注意事项？"></a>2. 函数组件类组件的使用 ？组件的定义注意事项？</h3><pre><code>函数组件和类组件都可以用于构建 React 组件，函数组件通常用于简单的 UI 组件，类组件则更适合复杂的交互逻辑。在定义组件时，需要注意组件的 props 和 state 的定义和使用。
-</code></pre>
-<h3 id="3-什么是受控组件？什么是非受控组件？怎么改变？"><a href="#3-什么是受控组件？什么是非受控组件？怎么改变？" class="headerlink" title="3. 什么是受控组件？什么是非受控组件？怎么改变？"></a>3. 什么是受控组件？什么是非受控组件？怎么改变？</h3><pre><code>受控组件，就是受我们控制的组件，组件的状态全程响应外部数据
-非受控组件，就是不受我们控制的组件，一般情况是在初始化的时候接受外部数据，然后自己在内部存储其自身状态
-非受控改受控：1.通过Refs获取dom节点，2.通过setState进行绑定和修改
-</code></pre>
-<h3 id="4-父传子、子传父、兄弟传参数？"><a href="#4-父传子、子传父、兄弟传参数？" class="headerlink" title="4. 父传子、子传父、兄弟传参数？"></a>4. 父传子、子传父、兄弟传参数？</h3><pre><code>父传子:
-    1、父组件准备数据,父组件通过属性直接传递给子组件
-    2、子组件通过props接收
-子传父：
-    1、父组件提供回调函数，传递给子组件
-    2、子组件调用父组件中传递的回调函数
-    3、将需要传递的参数，作为回调函数的参数进行传递
-兄弟传值：
-    状态提升：将共享状态写到最近的父组件里，由父组件管理状态
-    父组件
-        1、提供共享状态
-        2、操作共享状态的方法
-    兄弟组件的通讯
-        1、通过props接受状态或者操作状态
-</code></pre>
-<h3 id="5-refs"><a href="#5-refs" class="headerlink" title="5. refs?"></a>5. refs?</h3><pre><code>React 中的 Refs提供了一种方式，允许我们访问 DOM节点或在 render方法中创建的 React元素
-本质为ReactDOM.render()返回的组件实例，如果是渲染组件则返回的是组件实例，如果渲染dom则返回的是具体的dom节点
-</code></pre>
-<h3 id="6-新特性有哪些？并说出他们的用途及用法？"><a href="#6-新特性有哪些？并说出他们的用途及用法？" class="headerlink" title="6. 新特性有哪些？并说出他们的用途及用法？"></a>6. 新特性有哪些？并说出他们的用途及用法？</h3><pre><code>JSX 语法 它是一种JavaScript语法扩展，在React中可以方便地用来描述UI。
-单向数据绑定 先把模板写好，然后把模板和数据（数据可能来自后台）整合到一起形成HTML代码，然后把这段HTML代码插入到文档流里面
-虚拟 DOM  为了更好将虚拟的节点渲染到页面视图中，虚拟 DOM 对象的节点与真实 DOM 的属性一一照应
-声明式编程 它表达逻辑而不显式地定义步骤。这意味着我们需要根据逻辑的计算来声明要显示的组件
-Component 
-</code></pre>
-<h3 id="7-jsx-的本质是什么？jsx-语法注意事项？"><a href="#7-jsx-的本质是什么？jsx-语法注意事项？" class="headerlink" title="7. jsx 的本质是什么？jsx 语法注意事项？"></a>7. jsx 的本质是什么？jsx 语法注意事项？</h3><pre><code>JSX 本质上是一种语法糖，可以将 HTML 标签和 JavaScript 代码混合在一起，方便我们构建 UI 组件。需要注意的是，JSX 中的 class 属性需要写成 className，for 属性需要写成 htmlFor。
-</code></pre>
-<h3 id="8-类组件与函数组件里状态管理分别使用什么？"><a href="#8-类组件与函数组件里状态管理分别使用什么？" class="headerlink" title="8. 类组件与函数组件里状态管理分别使用什么？"></a>8. 类组件与函数组件里状态管理分别使用什么？</h3><pre><code>类组件可以通过 state 来管理组件状态，函数组件可以使用 Hooks 中的 useState 来管理组件状态。
-</code></pre>
-<h3 id="9-事件绑定的方式？"><a href="#9-事件绑定的方式？" class="headerlink" title="9. 事件绑定的方式？"></a>9. 事件绑定的方式？</h3><pre><code>render方法中使用bind
-render方法中使用箭头函数
-constructor中bind
-定义阶段使用箭头函数绑定
-</code></pre>
-<h3 id="10-this-指向？-普通函数，箭头函数"><a href="#10-this-指向？-普通函数，箭头函数" class="headerlink" title="10. this 指向？ 普通函数，箭头函数"></a>10. this 指向？ 普通函数，箭头函数</h3><pre><code>this 指向在普通函数中指向调用该函数的对象，而在箭头函数中指向该箭头函数定义时的对象。
-</code></pre>
-<h3 id="11-脚手架创建项目？"><a href="#11-脚手架创建项目？" class="headerlink" title="11. 脚手架创建项目？"></a>11. 脚手架创建项目？</h3><pre><code>可以使用 create-react-app 等脚手架工具来创建 React 项目。
-</code></pre>
-<h3 id="12-react-元素渲染？"><a href="#12-react-元素渲染？" class="headerlink" title="12. react 元素渲染？"></a>12. react 元素渲染？</h3><pre><code>React 元素渲染是指将 React 元素转换为 DOM 节点并插入到页面中的过程，可以通过 ReactDOM.render 方法来实现。
-</code></pre>
-<h3 id="14-useCallback-和-useMemo-的区别？"><a href="#14-useCallback-和-useMemo-的区别？" class="headerlink" title="14. useCallback 和 useMemo 的区别？"></a>14. useCallback 和 useMemo 的区别？</h3><pre><code>useCallback 和 useMemo 都可以用于优化组件性能，前者用于缓存函数，后者用于缓存计算结果。两者的区别在于 useCallback 返回的是一个函数，而 useMemo 返回的是一个值。
-</code></pre>
-<h3 id="15-更新导致重新渲染的方式？"><a href="#15-更新导致重新渲染的方式？" class="headerlink" title="15. 更新导致重新渲染的方式？"></a>15. 更新导致重新渲染的方式？</h3><pre><code>更新导致重新渲染的方式包括 props 和 state 的改变、父组件的重新渲染、forceUpdate 方法的调用等。
-</code></pre>
-<h3 id="16-浏览器渲染页面过程？"><a href="#16-浏览器渲染页面过程？" class="headerlink" title="16. 浏览器渲染页面过程？"></a>16. 浏览器渲染页面过程？</h3><pre><code>js放在head中会立即执行，阻塞后续的资源下载与执行。因为js有可能会修改dom，如果不阻塞后续的资源下载，dom的操作顺序不可控。
-浏览器一边下载HTML网页，一边开始解析 解析过程中，发现&lt;script&gt;标签
-暂停解析，网页渲染的控制权转交给JavaScript引擎
-如果&lt;script&gt;标签引用了外部脚本，就下载该脚本，否则就直接执行
-执行完毕，控制权交还渲染引擎，恢复往下解析HTML网页
-html需要等head中所有的js和css加载完成后才会开始绘制，但是html不需要等待放在body后的js下载完成 就会开始绘制,因此将js放在body的最后面，可以避免资源阻塞，同时使静态的html页面迅速显示。
-</code></pre>
-<h3 id="17-导出导入？单个？-多个？"><a href="#17-导出导入？单个？-多个？" class="headerlink" title="17. 导出导入？单个？ 多个？"></a>17. 导出导入？单个？ 多个？</h3><pre><code>导出和导入可以使用 ES6 的 export 和 import 语法，单个导出使用 export default，多个导出使用 export。
-</code></pre>
-<h3 id="18-类组件和函数组件的区别？"><a href="#18-类组件和函数组件的区别？" class="headerlink" title="18. 类组件和函数组件的区别？"></a>18. 类组件和函数组件的区别？</h3><pre><code>类组件和函数组件的区别在于类组件需要继承 React.Component，可以使用 state 和生命周期等功能，而函数组件则不需要继承，可以使用 Hooks 等功能。
-</code></pre>
-<h3 id="19-useEffect-useLayoutEffect-区别及参数？"><a href="#19-useEffect-useLayoutEffect-区别及参数？" class="headerlink" title="19. useEffect useLayoutEffect 区别及参数？"></a>19. useEffect useLayoutEffect 区别及参数？</h3><pre><code>useEffect可以让我们在函数组件中进行一些带有副作用的操作
-useEffect 是异步执行的，而useLayoutEffect是同步执行的。
-useEffect 浏览器完成渲染之后执行，而 useLayoutEffect 浏览器把内容渲染到界面之前执行
+                <h3 id="手写webpack核心原理"><a href="#手写webpack核心原理" class="headerlink" title="手写webpack核心原理"></a>手写webpack核心原理</h3><p>一、核心打包原理1.1 打包的主要流程如下1.2 具体细节二、基本准备工作三、获取模块内容四、分析模块五、收集依赖六、ES6转成ES5（AST）七、递归获取所有依赖八、处理两个关键字</p>
+<h3 id="一、核心打包原理"><a href="#一、核心打包原理" class="headerlink" title="一、核心打包原理"></a>一、核心打包原理</h3><h4 id="1-1-打包的主要流程如下"><a href="#1-1-打包的主要流程如下" class="headerlink" title="1.1 打包的主要流程如下"></a>1.1 打包的主要流程如下</h4><p>需要读到入口文件里面的内容。分析入口文件，递归的去读取模块所依赖的文件内容，生成AST语法树。根据AST语法树，生成浏览器能够运行的代码</p>
+<h4 id="1-2-具体细节"><a href="#1-2-具体细节" class="headerlink" title="1.2 具体细节"></a>1.2 具体细节</h4><p>获取主模块内容分析模块</p>
+<p>安装@babel&#x2F;parser包（转AST）<br>对模块内容进行处理</p>
+<p>安装@babel&#x2F;traverse包（遍历AST收集依赖）安装@babel&#x2F;core和@babel&#x2F;preset-env包   （es6转ES5）<br>递归所有模块生成最终代码</p>
+<h3 id="二、基本准备工作"><a href="#二、基本准备工作" class="headerlink" title="二、基本准备工作"></a>二、基本准备工作</h3><p>我们先建一个项目<br>项目目录暂时如下：</p>
+<p>已经把项目放到 github：<a target="_blank" rel="noopener" href="https://github.com/Sunny-lucking/howToBuildMyWebpack">https://github.com/Sunny-lucking/howToBuildMyWebpack</a> 可以卑微地要个star吗</p>
+<p>我们创建了add.js文件和minus.js文件,然后 在index.js中引入，再将index.js文件引入index.html。<br>代码如下:<br>add.js<br>复制代码export default (a,b)&#x3D;&gt;{<br>  return a+b;<br>}</p>
+<p>minus.js<br>复制代码export const minus &#x3D; (a,b)&#x3D;&gt;{<br>    return a-b<br>}</p>
+<p>index.js<br>复制代码import add from “.&#x2F;add.js”<br>import {minus} from “.&#x2F;minus.js”;</p>
+<p>const sum &#x3D; add(1,2);<br>const division &#x3D; minus(2,1);</p>
+<p>console.log(sum);<br>console.log(division);</p>
+<p>index.html<br>复制代码<!DOCTYPE html></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./src/index.js"></script>
+</body>
+</html>
 
-优先使用 useEffect，因为它是异步执行的，不会阻塞渲染
-会影响到渲染的操作尽量放到 useLayoutEffect中去，避免出现闪烁问题
-useLayoutEffect和componentDidMount是等价的，会同步调用，阻塞渲染
-在服务端渲染的时候使用会有一个 warning，因为它可能导致首屏实际内容和服务端渲染出来的内容不一致。
+<p>现在我们打开index.html。你猜会发生什么？？？显然会报错，因为浏览器还不能识别import等ES6语法</p>
+<p>不过没关系，因为我们本来就是要来解决这些问题的。</p>
+<h3 id="三、获取模块内容"><a href="#三、获取模块内容" class="headerlink" title="三、获取模块内容"></a>三、获取模块内容</h3><p>好了，现在我们开始根据上面核心打包原理的思路来实践一下，第一步就是 实现获取主模块内容。<br>我们来创建一个bundle.js文件。<br>复制代码&#x2F;&#x2F; 获取主入口文件<br>const fs &#x3D; require(‘fs’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    console.log(body);<br>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
+<p>目前项目目录如下</p>
+<p>我们来执行一下bundle.js，看看是否成功获得入口文件内容</p>
+<p>哇塞，不出所料的成功。一切尽在掌握之中。好了，已经实现第一步了，且让我看看第二步是要干嘛。<br>哦？是分析模块了</p>
+<h3 id="四、分析模块"><a href="#四、分析模块" class="headerlink" title="四、分析模块"></a>四、分析模块</h3><p>分析模块的主要任务是 将获取到的模块内容 解析成AST语法树，这个需要用到一个依赖包@babel&#x2F;parser<br>复制代码npm install @babel&#x2F;parser</p>
+<p>ok,安装完成我们将@babel&#x2F;parser引入bundle.js,<br>复制代码&#x2F;&#x2F; 获取主入口文件<br>const fs &#x3D; require(‘fs’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    &#x2F;&#x2F; 新增代码<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    console.log(ast);<br>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
+<p>我们去看下@babel&#x2F;parser的文档：</p>
+<p>可见提供了三个API，而我们目前用到的是parse这个API。<br>它的主要作用是 parses the provided code as an entire ECMAScript program，也就是将我们提供的代码解析成完整的ECMAScript代码的AST。<br>再看看该API提供的参数</p>
+<p>我们暂时用到的是sourceType，也就是用来指明我们要解析的代码是什么模块。<br>好了，现在我们来执行一下 bundle.js，看看AST是否成功生成。</p>
+<p>成功。又是不出所料的成功。<br>不过，我们需要知道的是，当前我们解析出来的不单单是index.js文件里的内容，它也包括了文件的其他信息。<br>而它的内容其实是它的属性program里的body里。如图所示</p>
+<p>我们可以改成打印ast.program.body看看<br>复制代码&#x2F;&#x2F; 获取主入口文件<br>const fs &#x3D; require(‘fs’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    console.log(ast.program.body);<br>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”</p>
+<p>执行</p>
+<p>看，现在打印出来的就是 index.js文件里的内容（也就是我们再index.js里写的代码啦）.</p>
+<h3 id="五、收集依赖"><a href="#五、收集依赖" class="headerlink" title="五、收集依赖"></a>五、收集依赖</h3><p>现在我们需要 遍历AST，将用到的依赖收集起来。什么意思呢？其实就是将用import语句引入的文件路径收集起来。我们将收集起来的路径放到deps里。<br>前面我们提到过，遍历AST要用到@babel&#x2F;traverse依赖包<br>复制代码npm install @babel&#x2F;traverse</p>
+<p>现在，我们引入。<br>复制代码const fs &#x3D; require(‘fs’)<br>const path &#x3D; require(‘path’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const traverse &#x3D; require(‘@babel&#x2F;traverse’).default<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });</p>
+<pre><code>// 新增代码
+const deps = &#123;&#125;
+traverse(ast,&#123;
+    ImportDeclaration(&#123;node&#125;)&#123;
+        const dirname = path.dirname(file)
+        const abspath = &#39;./&#39; + path.join(dirname,node.source.value)
+        deps[node.source.value] = abspath
+    &#125;
+&#125;)
+console.log(deps);
 </code></pre>
-<h3 id="20-context-使用"><a href="#20-context-使用" class="headerlink" title="20. context 使用 ?"></a>20. context 使用 ?</h3><pre><code>Context 可以用于在组件树中共享数据，通过创建一个 Context 对象，然后在 Provider 组件中提供数据，子组件可以通过 Consumer 组件来获取数据。
+<p>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
+<p>我们来看下官方文档对@babel&#x2F;traverse的描述</p>
+<p>好吧，如此简略<br>不过我们不难看出，第一个参数就是AST。第二个参数就是配置对象<br>我们看看我们写的代码<br>复制代码traverse(ast,{<br>    ImportDeclaration({node}){<br>        const dirname &#x3D; path.dirname(file)<br>        const abspath &#x3D; ‘.&#x2F;‘ + path.join(dirname,node.source.value)<br>        deps[node.source.value] &#x3D; abspath<br>    }<br>})</p>
+<p>配置对象里，我们配置了ImportDeclaration方法，这是什么意思呢？<br>我们看看之前打印出来的AST。</p>
+<p>ImportDeclaration方法代表的是对type类型为ImportDeclaration的节点的处理。<br>这里我们获得了该节点中source的value，也就是node.source.value，<br>这里的value指的是什么意思呢？其实就是import的值，可以看我们的index.js的代码。<br>复制代码import add from “.&#x2F;add.js”<br>import {minus} from “.&#x2F;minus.js”;</p>
+<p>const sum &#x3D; add(1,2);<br>const division &#x3D; minus(2,1);</p>
+<p>console.log(sum);<br>console.log(division);</p>
+<p>可见，value指的就是import后面的 ‘.&#x2F;add.js’ 和 ‘.&#x2F;minus.js’<br>然后我们将file目录路径跟获得的value值拼接起来保存到deps里，美其名曰：收集依赖。<br>ok，这个操作就结束了，执行看看收集成功了没？</p>
+<p>oh my god。又成功了。</p>
+<h3 id="六、ES6转成ES5（AST）"><a href="#六、ES6转成ES5（AST）" class="headerlink" title="六、ES6转成ES5（AST）"></a>六、ES6转成ES5（AST）</h3><p>现在我们需要把获得的ES6的AST转化成ES5，前面讲到过，执行这一步需要两个依赖包<br>复制代码npm install @babel&#x2F;core @babel&#x2F;preset-env</p>
+<p>我们现在将依赖引入并使用<br>复制代码const fs &#x3D; require(‘fs’)<br>const path &#x3D; require(‘path’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const traverse &#x3D; require(‘@babel&#x2F;traverse’).default<br>const babel &#x3D; require(‘@babel&#x2F;core’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    const deps &#x3D; {}<br>    traverse(ast,{<br>        ImportDeclaration({node}){<br>            const dirname &#x3D; path.dirname(file)<br>            const abspath &#x3D; “.&#x2F;“ + path.join(dirname,node.source.value)<br>            deps[node.source.value] &#x3D; abspath<br>        }<br>    })</p>
+<pre><code>新增代码
+const &#123;code&#125; = babel.transformFromAst(ast,null,&#123;
+    presets:[&quot;@babel/preset-env&quot;]
+&#125;)
+console.log(code);
 </code></pre>
-<h3 id="21-生命周期有几个阶段，分别是什么-？执行顺序？-调用时机？"><a href="#21-生命周期有几个阶段，分别是什么-？执行顺序？-调用时机？" class="headerlink" title="21. 生命周期有几个阶段，分别是什么 ？执行顺序？ 调用时机？"></a>21. 生命周期有几个阶段，分别是什么 ？执行顺序？ 调用时机？</h3><pre><code>React 生命周期有三个阶段：挂载阶段、更新阶段和卸载阶段。在挂载阶段，组件被渲染到页面上；在更新阶段，组件的 props 或 state 发生变化时会重新渲染；在卸载阶段，组件被从页面中移除。
-constructor     初始化state状态或者在this上挂载方法
-getDerivedStateFromProps    组件创建和更新阶段
-render  用于渲染DOM结构
-componentDidMount   render方法之后执行 此方法多用于执行一些数据获取，事件监听等操作
-shouldComponentUpdate   到新的props或者state时都会调用
-getSnapshotBeforeUpdate     render后执行
-componentDidUpdate  组件更新时触发
-componentWillUnmount    组件卸载前
-componentWillMount  render挂载之前调用
-</code></pre>
-<h3 id="22-类组件中更新时的钩子函数是什么？可以去改变状态吗？"><a href="#22-类组件中更新时的钩子函数是什么？可以去改变状态吗？" class="headerlink" title="22.类组件中更新时的钩子函数是什么？可以去改变状态吗？"></a>22.类组件中更新时的钩子函数是什么？可以去改变状态吗？</h3><p>shouldComponentUpdate  不可以会发生页面闪烁，会导致无限循环调用更新</p>
-<h3 id="23-路由的使用"><a href="#23-路由的使用" class="headerlink" title="23.路由的使用"></a>23.路由的使用</h3><p>Router中包含了对路径改变的监听，并且会将相应的路径传递给子组件<br>BrowserRouter是history模式，HashRouter是hash模式<br>使用两者作为最顶层组件包裹其他组件</p>
-<h3 id="24-useRef的使用"><a href="#24-useRef的使用" class="headerlink" title="24.useRef的使用"></a>24.useRef的使用</h3><p>我们可以将useRef返回值看作一个组件内部全局共享变量，它会在渲染内部共享一个相同的值。相对state&#x2F;props他们是独立于不同次render中的内部作用域值。<br>useRef返回值的改变并不会引起组件重新render<br>在React.functionComponent中想要获取对应jsx的真实Dom元素时候也可以通过useRef进行获取到对应的Dom元素。</p>
-<h3 id="25-在render函数使用this-setstate，会怎么样？"><a href="#25-在render函数使用this-setstate，会怎么样？" class="headerlink" title="25.在render函数使用this.setstate，会怎么样？"></a>25.在render函数使用this.setstate，会怎么样？</h3><p>会触发死循环导致内存崩溃</p>
-<h3 id="26-自定义Hook？"><a href="#26-自定义Hook？" class="headerlink" title="26.自定义Hook？"></a>26.自定义Hook？</h3><p>自定义 hook 必须要以 use 开头命名遵循驼峰命名，在其内部调用其他 hook<br>自定义 Hooks 的核心是共享组件之间的逻辑<br>使用自定义 Hooks 能够减少重复的逻辑</p>
-<h3 id="27-路由跳转方式？怎么传递参数？"><a href="#27-路由跳转方式？怎么传递参数？" class="headerlink" title="27.路由跳转方式？怎么传递参数？"></a>27.路由跳转方式？怎么传递参数？</h3><p>navlink link history history<br>params 以冒号拼接，参数会暴露在url地址栏<br>search 以？号拼接，参数也会暴露在url地址栏</p>
-<h3 id="29-setstate是同步还是异步？"><a href="#29-setstate是同步还是异步？" class="headerlink" title="29.setstate是同步还是异步？"></a>29.setstate是同步还是异步？</h3><p>在组件生命周期或React合成事件中，setState是异步<br>在setTimeout或者原生dom事件中，setState是同步</p>
-<h3 id="30-路由懒加载的使用"><a href="#30-路由懒加载的使用" class="headerlink" title="30.路由懒加载的使用"></a>30.路由懒加载的使用</h3><p>React.lazy 接受一个函数作为参数，这个函数需要调用import()。<br>React.lazy 方法返回的是一个lazy组件的对象，类型是react.lazy，并且 lazy 组件具有 _status 属性。并且与 promise 类似，有 Pending，Resolved，Rejected 三个状态，分别代表组件的加载中，已加载、加载失败三个状态。</p>
-<h3 id="31-vue与react的区别？"><a href="#31-vue与react的区别？" class="headerlink" title="31.vue与react的区别？"></a>31.vue与react的区别？</h3><p>一、核心思想不同<br>Vue的核心思想是尽可能的降低前端开发的门槛，是一个灵活易用的渐进式双向绑定的MVVM框架。<br>React的核心思想是声明式渲染和组件化、单向数据流，React既不属于MVC也不属于MVVM架构。<br>二、组件写法上不同<br>Vue的组件写法是通过template的单文件组件格式。<br>React的组件写法是JSX+inline style，也就是吧HTML和CSS全部写进JavaScript中。<br>三、Diff算法不同<br>四、响应式原理不同<br>React的响应式原理<br>React主要是通过setState()方法来更新状态，状态更新之后，组件也会重新渲染。<br>Vue的响应式原理<br>vue会遍历data数据对象，使用Object.definedProperty()将每个属性都转换为getter和setter，每个Vue组件实例都有一个对应的watcher实例，在组件初次渲染的时候会记录组件用到了那些数据，当数据发生改变的时候，会触发setter方法，并通知所有依赖这个数据的watcher实例调用update方法去触发组件的compile渲染方法，进行渲染数据。<br>五、封装程度不同<br>封装程度，vue封装程度更高，内置多个指令和数据双向绑定，react封装度比较低，适合扩展。</p>
-<h3 id="32-hashrouter与browserouter的区别？"><a href="#32-hashrouter与browserouter的区别？" class="headerlink" title="32.hashrouter与browserouter的区别？"></a>32.hashrouter与browserouter的区别？</h3><p>底层原理不一样：<br>BrowserRouter调用的是H5 history API,低版本兼容性问题。<br>HashRouter 使用的是URL哈希值<br>地址栏表现形式不一样：<br>BrowserRouter的路径：localhost:3000&#x2F;demo&#x2F;a<br>HashRouter的路径：localhost:3000&#x2F;#&#x2F;demo&#x2F;a<br>刷新后对路由state参数的影响<br>BrowserRouter没有任何影响，因为state保存在history对象中。<br>HashRouter刷新后会导致路由state参数的丢失！！！</p>
-<h3 id="33-react中key的作用"><a href="#33-react中key的作用" class="headerlink" title="33.react中key的作用"></a>33.react中key的作用</h3><p>具有唯一标识，可以根据diff算法更准确更快速的找到对应的元素</p>
-<h3 id="什么是组件化"><a href="#什么是组件化" class="headerlink" title="什么是组件化"></a>什么是组件化</h3><p>  组件化就是把可以复用的、独立的、基础的、功能专一的代码封装到一个方法或者代码片段里，在未来需要的地方引入使用。用极少的代码实现之前相同的功能，避免了相同功能代码的复写，提高了开发的效率。</p>
-<h3 id="什么是模块化"><a href="#什么是模块化" class="headerlink" title="什么是模块化"></a>什么是模块化</h3><p>模块化是为了单独实现某一功能模块进行封装的方法，一个模块里可能拥有n个基础组件搭配产生。模块化属于横向分块，每个模块像一条横向把n条竖直的线串联起来形成一个整体。</p>
-<h3 id="this-setstate不可以在哪里使用"><a href="#this-setstate不可以在哪里使用" class="headerlink" title="this.setstate不可以在哪里使用"></a>this.setstate不可以在哪里使用</h3><p>componentWillMount中执行,组件只挂载一次，在 componentWillMount里 setState 会但是仅会更新 state 一次，<br>componentWillUnmount中执行 setState 不会更新 state，是不生效而且无意义的<br>禁止在 shouldComponentUpdate 和 componentWillUpdate中调用setState，这会造成循环调用，<br>render函数也不行，会触发死循环导致内存崩溃</p>
-<h3 id="hooks使用有哪些限制"><a href="#hooks使用有哪些限制" class="headerlink" title="hooks使用有哪些限制"></a>hooks使用有哪些限制</h3><p>不能在循环语句, 条件语句, 或者嵌套函数中调用 Hooks 函数,<br>仅在函数组件和自定义 hooks 函数中调用 hooks 函数 不能在其他普通函数中调用</p>
-<h3 id="react和vue的相似和差异有哪些"><a href="#react和vue的相似和差异有哪些" class="headerlink" title="react和vue的相似和差异有哪些"></a>react和vue的相似和差异有哪些</h3><p>区别：<br>vue 通过Templating模板渲染<br>react 通过JSX渲染<br>vue是双向绑定<br>react是单项绑定<br>单向绑定：插值形式， v-bind也是单向绑定。<br>双向绑定：表单v-model，用户对view层的更改会直接同步到model层。（实际上v-model只是v-bind:value 和 v-on:input的语法糖）<br>Vue是MVVM模式的一种方式实现。但没有完全遵循 MVVM 模型。<br>React是前端组件化框架，是严格的view层，MVC模式。由后端组件化发展而来。<br>相似：<br>都是单向数据流<br>组件化<br>虚拟dom</p>
-<h3 id="更新阶段的钩子函数中，改变状态应该怎么处理"><a href="#更新阶段的钩子函数中，改变状态应该怎么处理" class="headerlink" title="更新阶段的钩子函数中，改变状态应该怎么处理"></a>更新阶段的钩子函数中，改变状态应该怎么处理</h3><p>进行if判断，否则会陷入递归更新而报错<br>可以将上一次的props（prevProps）和本次接收到的props做一个比较后再调用</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://react.docschina.org/learn">Writing</a></p>
+<p>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
+<p>我们看看官网文档对@babel&#x2F;core 的transformFromAst的介绍</p>
+<p>害，又是一如既往的简略。。。<br>简单说一下，其实就是将我们传入的AST转化成我们在第三个参数里配置的模块类型。<br>好了，现在我们来执行一下，看看结果</p>
+<p>我的天，一如既往的成功。可见 它将我们写const 转化成var了。<br>好了，这一步到此结束，咦，你可能会有疑问，上一步的收集依赖在这里怎么没啥关系啊，确实如此。收集依赖是为了下面进行的递归操作。</p>
+<h3 id="七、递归获取所有依赖"><a href="#七、递归获取所有依赖" class="headerlink" title="七、递归获取所有依赖"></a>七、递归获取所有依赖</h3><p>经过上面的过程，现在我们知道getModuleInfo是用来获取一个模块的内容，不过我们还没把获取的内容return出来，因此，更改下getModuleInfo方法<br>复制代码const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    const deps &#x3D; {}<br>    traverse(ast,{<br>        ImportDeclaration({node}){<br>            const dirname &#x3D; path.dirname(file)<br>            const abspath &#x3D; “.&#x2F;“ + path.join(dirname,node.source.value)<br>            deps[node.source.value] &#x3D; abspath<br>        }<br>    })<br>    const {code} &#x3D; babel.transformFromAst(ast,null,{<br>        presets:[“@babel&#x2F;preset-env”]<br>    })<br>    &#x2F;&#x2F; 新增代码<br>    const moduleInfo &#x3D; {file,deps,code}<br>    return moduleInfo<br>}</p>
+<p>我们返回了一个对象 ，这个对象包括该模块的路径（file），该模块的依赖（deps），该模块转化成es5的代码<br>该方法只能获取一个模块的的信息，但是我们要怎么获取一个模块里面的依赖模块的信息呢？<br>没错，看标题，，你应该想到了就算递归。<br>现在我们来写一个递归方法，递归获取依赖<br>复制代码const parseModules &#x3D; (file) &#x3D;&gt;{<br>    const entry &#x3D;  getModuleInfo(file)<br>    const temp &#x3D; [entry]<br>    for (let i &#x3D; 0;i&lt;temp.length;i++){<br>        const deps &#x3D; temp[i].deps<br>        if (deps){<br>            for (const key in deps){<br>                if (deps.hasOwnProperty(key)){<br>                    temp.push(getModuleInfo(deps[key]))<br>                }<br>            }<br>        }<br>    }<br>    console.log(temp)<br>}</p>
+<p>讲解下parseModules方法：</p>
+<p>我们首先传入主模块路径将获得的模块信息放到temp数组里。外面的循坏遍历temp数组，此时的temp数组只有主模块循环里面再获得主模块的依赖deps遍历deps，通过调用getModuleInfo将获得的依赖模块信息push到temp数组里。<br>目前bundle.js文件：<br>复制代码const fs &#x3D; require(‘fs’)<br>const path &#x3D; require(‘path’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const traverse &#x3D; require(‘@babel&#x2F;traverse’).default<br>const babel &#x3D; require(‘@babel&#x2F;core’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    const deps &#x3D; {}<br>    traverse(ast,{<br>        ImportDeclaration({node}){<br>            const dirname &#x3D; path.dirname(file)<br>            const abspath &#x3D; “.&#x2F;“ + path.join(dirname,node.source.value)<br>            deps[node.source.value] &#x3D; abspath<br>        }<br>    })<br>    const {code} &#x3D; babel.transformFromAst(ast,null,{<br>        presets:[“@babel&#x2F;preset-env”]<br>    })<br>    const moduleInfo &#x3D; {file,deps,code}<br>    return moduleInfo<br>}</p>
+<p>&#x2F;&#x2F; 新增代码<br>const parseModules &#x3D; (file) &#x3D;&gt;{<br>    const entry &#x3D;  getModuleInfo(file)<br>    const temp &#x3D; [entry]<br>    for (let i &#x3D; 0;i&lt;temp.length;i++){<br>        const deps &#x3D; temp[i].deps<br>        if (deps){<br>            for (const key in deps){<br>                if (deps.hasOwnProperty(key)){<br>                    temp.push(getModuleInfo(deps[key]))<br>                }<br>            }<br>        }<br>    }<br>    console.log(temp)<br>}<br>parseModules(“.&#x2F;src&#x2F;index.js”)</p>
+<p>按照目前我们的项目来说执行完，应当是temp 应当是存放了index.js,add.js,minus.js三个模块。<br>,执行看看。</p>
+<p>牛逼！！！确实如此。<br>不过现在的temp数组里的对象格式不利于后面的操作，我们希望是以文件的路径为key，{code，deps}为值的形式存储。因此，我们创建一个新的对象depsGraph。<br>复制代码const parseModules &#x3D; (file) &#x3D;&gt;{<br>    const entry &#x3D;  getModuleInfo(file)<br>    const temp &#x3D; [entry]<br>    const depsGraph &#x3D; {} &#x2F;&#x2F;新增代码<br>    for (let i &#x3D; 0;i&lt;temp.length;i++){<br>        const deps &#x3D; temp[i].deps<br>        if (deps){<br>            for (const key in deps){<br>                if (deps.hasOwnProperty(key)){<br>                    temp.push(getModuleInfo(deps[key]))<br>                }<br>            }<br>        }<br>    }<br>    &#x2F;&#x2F; 新增代码<br>    temp.forEach(moduleInfo&#x3D;&gt;{<br>        depsGraph[moduleInfo.file] &#x3D; {<br>            deps:moduleInfo.deps,<br>            code:moduleInfo.code<br>        }<br>    })<br>    console.log(depsGraph)<br>    return depsGraph<br>}</p>
+<p>ok，现在存储的就是这种格式啦</p>
+<h3 id="八、处理两个关键字"><a href="#八、处理两个关键字" class="headerlink" title="八、处理两个关键字"></a>八、处理两个关键字</h3><p>我们现在的目的就是要生成一个bundle.js文件，也就是打包后的一个文件。其实思路很简单，就是把index.js的内容和它的依赖模块整合起来。然后把代码写到一个新建的js文件。</p>
+<p>我们把这段代码格式化一下<br>复制代码&#x2F;&#x2F; index.js<br>“use strict”<br>var _add &#x3D; _interopRequireDefault(require(“.&#x2F;add.js”));<br>var _minus &#x3D; require(“.&#x2F;minus.js”);<br>function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { “default”: obj }; }<br>var sum &#x3D; (0, _add[“default”])(1, 2);<br>var division &#x3D; (0, _minus.minus)(2, 1);<br>console.log(sum); console.log(division);</p>
+<p>复制代码&#x2F;&#x2F; add.js<br>“use strict”;<br>Object.defineProperty(exports, “__esModule”, {  value: true});<br>exports[“default”] &#x3D; void 0;<br>var _default &#x3D; function _default(a, b) {  return a + b;};<br>exports[“default”] &#x3D; _default;</p>
+<p>但是我们现在是不能执行index.js这段代码的，因为浏览器不会识别执行require和exports。<br>不能识别是为什么？不就是因为没有定义这require函数，和exports对象。那我们可以自己定义。<br>我们创建一个函数<br>复制代码const bundle &#x3D; (file) &#x3D;&gt;{<br>    const depsGraph &#x3D; JSON.stringify(parseModules(file))</p>
+<p>}</p>
+<p>我们将上一步获得的depsGraph保存起来。<br>现在返回一个整合完整的字符串代码。<br>怎么返回呢？更改下bundle函数<br>复制代码const bundle &#x3D; (file) &#x3D;&gt;{<br>    const depsGraph &#x3D; JSON.stringify(parseModules(file))<br>    return <code>(function (graph) &#123;                 function require(file) &#123;                     (function (code) &#123;                         eval(code)                     &#125;)(graph[file].code)                 &#125;                 require(file)             &#125;)(depsGraph)</code></p>
+<p>}</p>
+<p>我们看下返回的这段代码<br>复制代码 (function (graph) {<br>        function require(file) {<br>            (function (code) {<br>                eval(code)<br>            })(graph[file].code)<br>        }<br>        require(file)<br>    })(depsGraph)</p>
+<p>其实就是</p>
+<p>把保存下来的depsGraph，传入一个立即执行函数。将主模块路径传入require函数执行执行reuire函数的时候，又立即执行一个立即执行函数，这里是把code的值传进去了执行eval（code）。也就是执行主模块的code这段代码<br>我们再来看下code的值<br>复制代码&#x2F;&#x2F; index.js<br>“use strict”<br>var _add &#x3D; _interopRequireDefault(require(“.&#x2F;add.js”));<br>var _minus &#x3D; require(“.&#x2F;minus.js”);<br>function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { “default”: obj }; }<br>var sum &#x3D; (0, _add[“default”])(1, 2);<br>var division &#x3D; (0, _minus.minus)(2, 1);<br>console.log(sum); console.log(division);</p>
+<p>没错执行这段代码的时候，又会用到require函数。此时require的参数为add.js的路径，哎，不是绝对路径，需要转化成绝对路径。因此写一个函数absRequire来转化。怎么实现呢？我们来看下代码<br>复制代码(function (graph) {<br>    function require(file) {<br>        function absRequire(relPath) {<br>            return require(graph[file].deps[relPath])<br>        }<br>        (function (require,code) {<br>            eval(code)<br>        })(absRequire,graph[file].code)<br>    }<br>    require(file)<br>})(depsGraph)</p>
+<p>实际上是实现了一层拦截。</p>
+<p>执行require（’.&#x2F;src&#x2F;index.js’）函数执行了<br>复制代码(function (require,code) {<br>    eval(code)<br>})(absRequire,graph[file].code)</p>
+<p>执行eval，也就是执行了index.js的代码。执行过程会执行到require函数。这时会调用这个require，也就是我们传入的absRequire<br>而执行absRequire就执行了return require(graph[file].deps[relPath])这段代码，也就是执行了外面这个require</p>
+<p>在这里return require(graph[file].deps[relPath])，我们已经对路径转化成绝对路径了。因此执行外面的require的时候就是传入绝对路径。</p>
+<p>而执行require（”.&#x2F;src&#x2F;add.js”）之后，又会执行eval，也就是执行add.js文件的代码。<br>是不是有点绕？其实是个递归。<br>这样就将代码整合起来了，但是有个问题，就是在执行add.js的code时候，会遇到exports这个还没定义的问题。如下所示<br>复制代码&#x2F;&#x2F; add.js<br>“use strict”;<br>Object.defineProperty(exports, “__esModule”, {  value: true});<br>exports[“default”] &#x3D; void 0;<br>var _default &#x3D; function _default(a, b) {  return a + b;};<br>exports[“default”] &#x3D; _default;</p>
+<p>我们发现 这里它把exports当作一个对象来使用了，但是这个对象还没定义，因此我们可以自己定义一个exports对象。<br>复制代码(function (graph) {<br>    function require(file) {<br>        function absRequire(relPath) {<br>            return require(graph[file].deps[relPath])<br>        }<br>        var exports &#x3D; {}<br>        (function (require,exports,code) {<br>            eval(code)<br>        })(absRequire,exports,graph[file].code)<br>        return exports<br>    }<br>    require(file)<br>})(depsGraph)</p>
+<p>我们增添了一个空对象 exports，执行add.js代码的时候，会往这个空对象上增加一些属性，<br>复制代码&#x2F;&#x2F; add.js<br>“use strict”;<br>Object.defineProperty(exports, “__esModule”, {  value: true});<br>exports[“default”] &#x3D; void 0;<br>var _default &#x3D; function _default(a, b) {  return a + b;};<br>exports[“default”] &#x3D; _default;</p>
+<p>比如，执行完这段代码后<br>复制代码exports &#x3D; {<br>  __esModule：{  value: true}，<br>  default：function _default(a, b) {  return a + b;}<br>}</p>
+<p>然后我们把exports对象return出去。<br>复制代码var _add &#x3D; _interopRequireDefault(require(“.&#x2F;add.js”));</p>
+<p>可见，return出去的值，被_interopRequireDefault接收，_interopRequireDefault再返回default这个属性给_add，因此_add &#x3D; function _default(a, b) { return a + b;}<br>现在明白了，为什么ES6模块 引入的是一个对象引用了吧，因为exports就是一个对象。<br>至此，处理；两个关键词的功能就完整了。<br>复制代码const fs &#x3D; require(‘fs’)<br>const path &#x3D; require(‘path’)<br>const parser &#x3D; require(‘@babel&#x2F;parser’)<br>const traverse &#x3D; require(‘@babel&#x2F;traverse’).default<br>const babel &#x3D; require(‘@babel&#x2F;core’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    const ast &#x3D; parser.parse(body,{<br>        sourceType:’module’ &#x2F;&#x2F;表示我们要解析的是ES模块<br>    });<br>    const deps &#x3D; {}<br>    traverse(ast,{<br>        ImportDeclaration({node}){<br>            const dirname &#x3D; path.dirname(file)<br>            const abspath &#x3D; “.&#x2F;“ + path.join(dirname,node.source.value)<br>            deps[node.source.value] &#x3D; abspath<br>        }<br>    })<br>    const {code} &#x3D; babel.transformFromAst(ast,null,{<br>        presets:[“@babel&#x2F;preset-env”]<br>    })<br>    const moduleInfo &#x3D; {file,deps,code}<br>    return moduleInfo<br>}<br>const parseModules &#x3D; (file) &#x3D;&gt;{<br>    const entry &#x3D;  getModuleInfo(file)<br>    const temp &#x3D; [entry]<br>    const depsGraph &#x3D; {}<br>    for (let i &#x3D; 0;i&lt;temp.length;i++){<br>        const deps &#x3D; temp[i].deps<br>        if (deps){<br>            for (const key in deps){<br>                if (deps.hasOwnProperty(key)){<br>                    temp.push(getModuleInfo(deps[key]))<br>                }<br>            }<br>        }<br>    }<br>    temp.forEach(moduleInfo&#x3D;&gt;{<br>        depsGraph[moduleInfo.file] &#x3D; {<br>            deps:moduleInfo.deps,<br>            code:moduleInfo.code<br>        }<br>    })<br>    return depsGraph<br>}<br>&#x2F;&#x2F; 新增代码<br>const bundle &#x3D; (file) &#x3D;&gt;{<br>    const depsGraph &#x3D; JSON.stringify(parseModules(file))<br>    return <code>(function (graph) &#123;         function require(file) &#123;             function absRequire(relPath) &#123;                 return require(graph[file].deps[relPath])             &#125;             var exports = &#123;&#125;             (function (require,exports,code) &#123;                 eval(code)             &#125;)(absRequire,exports,graph[file].code)             return exports         &#125;         require(&#39;$&#123;file&#125;&#39;)     &#125;)($&#123;depsGraph&#125;)</code></p>
+<p>}<br>const content &#x3D; bundle(‘.&#x2F;src&#x2F;index.js’)</p>
+<p>console.log(content);</p>
+<p>来执行下，看看效果</p>
+<p>确实执行成功。接下来，把返回的这段代码写入新创建的文件中<br>复制代码&#x2F;&#x2F;写入到我们的dist目录下<br>fs.mkdirSync(‘.&#x2F;dist’);<br>fs.writeFileSync(‘.&#x2F;dist&#x2F;bundle.js’,content)</p>
+<p>至次，我们的手写webpack核心原理就到此结束了。<br>我们参观下生成的bundle.js文件</p>
+<p>发现其实就是将我们早期收集的所有依赖作为参数传入到立即执行函数当中，然后通过eval来递归地执行每个依赖的code。<br>现在我们将bundle.js文件引入index.html看看能不能执行</p>
+<p>成功。。。。。惊喜。。<br>感谢您也恭喜您看到这里，我可以卑微的求个star吗！！！</p>
 
                 
             </div>
@@ -533,7 +535,7 @@ componentWillMount  render挂载之前调用
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://171wubin.github.io/2023/09/11/React-0/">https://171wubin.github.io/2023/09/11/React-0/</a>
+                    <a href="https://171wubin.github.io/2023/10/10/webPack/">https://171wubin.github.io/2023/10/10/webPack/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,8 +573,8 @@ componentWillMount  render挂载之前调用
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/React/">
-                                    <span class="chip bg-color">React</span>
+                                <a href="/tags/webPack/">
+                                    <span class="chip bg-color">webPack</span>
                                 </a>
                             
                         </div>
@@ -650,7 +652,7 @@ componentWillMount  render挂载之前调用
         repo: '171WuBin.github.io',
         owner: '171WuBin',
         admin: "wubin",
-        id: '2023-09-11T09-31-15',
+        id: '2023-10-10T09-03-35',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -678,9 +680,10 @@ componentWillMount  render挂载之前调用
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/10/10/webPack/">
                     <div class="card-image">
@@ -698,9 +701,9 @@ componentWillMount  render挂载之前调用
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -709,6 +712,7 @@ componentWillMount  render挂载之前调用
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -727,13 +731,13 @@ componentWillMount  render挂载之前调用
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/07/hello-world/">
+                <a href="/2023/09/11/React-0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Vue">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="React">
                         
-                        <span class="card-title">Vue</span>
+                        <span class="card-title">React</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -744,7 +748,7 @@ componentWillMount  render挂载之前调用
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-11
                             </span>
                         <span class="publish-author">
                             
@@ -757,8 +761,8 @@ componentWillMount  render挂载之前调用
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
+                    <a href="/tags/React/">
+                        <span class="chip bg-color">React</span>
                     </a>
                     
                 </div>
