@@ -406,7 +406,7 @@
 <h4 id="1-2-具体细节"><a href="#1-2-具体细节" class="headerlink" title="1.2 具体细节"></a>1.2 具体细节</h4><p>获取主模块内容分析模块</p>
 <p>安装@babel&#x2F;parser包（转AST）<br>对模块内容进行处理</p>
 <p>安装@babel&#x2F;traverse包（遍历AST收集依赖）安装@babel&#x2F;core和@babel&#x2F;preset-env包   （es6转ES5）<br>递归所有模块生成最终代码</p>
-<h3 id="二、基本准备工作"><a href="#二、基本准备工作" class="headerlink" title="二、基本准备工作"></a>二、基本准备工作</h3><p>我们先建一个项目<br>项目目录暂时如下：</p>
+<h3 id="二、基本准备工作"><a href="#二、基本准备工作" class="headerlink" title="二、基本准备工作"></a>二、基本准备工作</h3><p>我们先建一个项目<br>项目目录暂时如下：<br><img src="/public/1.png" alt="项目目录1"></p>
 <p>已经把项目放到 github：<a target="_blank" rel="noopener" href="https://github.com/Sunny-lucking/howToBuildMyWebpack">https://github.com/Sunny-lucking/howToBuildMyWebpack</a> 可以卑微地要个star吗</p>
 <p>我们创建了add.js文件和minus.js文件,然后 在index.js中引入，再将index.js文件引入index.html。<br>代码如下:<br>add.js<br>复制代码export default (a,b)&#x3D;&gt;{<br>  return a+b;<br>}</p>
 <p>minus.js<br>复制代码export const minus &#x3D; (a,b)&#x3D;&gt;{<br>    return a-b<br>}</p>
@@ -427,7 +427,7 @@
 <p>现在我们打开index.html。你猜会发生什么？？？显然会报错，因为浏览器还不能识别import等ES6语法</p>
 <p>不过没关系，因为我们本来就是要来解决这些问题的。</p>
 <h3 id="三、获取模块内容"><a href="#三、获取模块内容" class="headerlink" title="三、获取模块内容"></a>三、获取模块内容</h3><p>好了，现在我们开始根据上面核心打包原理的思路来实践一下，第一步就是 实现获取主模块内容。<br>我们来创建一个bundle.js文件。<br>复制代码&#x2F;&#x2F; 获取主入口文件<br>const fs &#x3D; require(‘fs’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    console.log(body);<br>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
-<p>目前项目目录如下<br><img src="/public/2023/10/10/webPack/1.png" alt="图片1" title="图片1"></p>
+<p>目前项目目录如下<br><img src="/public/1.png" alt="avatar"></p>
 <p>我们来执行一下bundle.js，看看是否成功获得入口文件内容</p>
 <p>哇塞，不出所料的成功。一切尽在掌握之中。好了，已经实现第一步了，且让我看看第二步是要干嘛。<br>哦？是分析模块了</p>
 <h3 id="四、分析模块"><a href="#四、分析模块" class="headerlink" title="四、分析模块"></a>四、分析模块</h3><p>分析模块的主要任务是 将获取到的模块内容 解析成AST语法树，这个需要用到一个依赖包@babel&#x2F;parser<br>复制代码npm install @babel&#x2F;parser</p>
