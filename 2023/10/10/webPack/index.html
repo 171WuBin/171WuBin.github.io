@@ -427,7 +427,7 @@
 <p>现在我们打开index.html。你猜会发生什么？？？显然会报错，因为浏览器还不能识别import等ES6语法</p>
 <p>不过没关系，因为我们本来就是要来解决这些问题的。</p>
 <h3 id="三、获取模块内容"><a href="#三、获取模块内容" class="headerlink" title="三、获取模块内容"></a>三、获取模块内容</h3><p>好了，现在我们开始根据上面核心打包原理的思路来实践一下，第一步就是 实现获取主模块内容。<br>我们来创建一个bundle.js文件。<br>复制代码&#x2F;&#x2F; 获取主入口文件<br>const fs &#x3D; require(‘fs’)<br>const getModuleInfo &#x3D; (file)&#x3D;&gt;{<br>    const body &#x3D; fs.readFileSync(file,’utf-8’)<br>    console.log(body);<br>}<br>getModuleInfo(“.&#x2F;src&#x2F;index.js”)</p>
-<p>目前项目目录如下<br><img src="/public/2023/10/10/webPack/1.png" alt="avatar"></p>
+<p>目前项目目录如下<br><img src="/public/2023/10/10/webPack/1.png" alt="图片1" title="图片1"></p>
 <p>我们来执行一下bundle.js，看看是否成功获得入口文件内容</p>
 <p>哇塞，不出所料的成功。一切尽在掌握之中。好了，已经实现第一步了，且让我看看第二步是要干嘛。<br>哦？是分析模块了</p>
 <h3 id="四、分析模块"><a href="#四、分析模块" class="headerlink" title="四、分析模块"></a>四、分析模块</h3><p>分析模块的主要任务是 将获取到的模块内容 解析成AST语法树，这个需要用到一个依赖包@babel&#x2F;parser<br>复制代码npm install @babel&#x2F;parser</p>
