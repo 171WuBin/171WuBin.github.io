@@ -413,7 +413,7 @@
 </ol>
 <p>安装@babel&#x2F;parser包（转AST）<br>3. 对模块内容进行处理</p>
 <p>安装@babel&#x2F;traverse包（遍历AST收集依赖）安装@babel&#x2F;core和@babel&#x2F;preset-env包   （es6转ES5）<br>4. 递归所有模块<br>5. 生成最终代码</p>
-<h3 id="二、基本准备工作"><a href="#二、基本准备工作" class="headerlink" title="二、基本准备工作"></a>二、基本准备工作</h3><p>我们先建一个项目<br>项目目录暂时如下：<br><img src="/../../public/1.png" alt="项目目录1"></p>
+<h3 id="二、基本准备工作"><a href="#二、基本准备工作" class="headerlink" title="二、基本准备工作"></a>二、基本准备工作</h3><p>我们先建一个项目<br>项目目录暂时如下：<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/7/24/1737e4428976afb1~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png" alt="avatar"></p>
 <p>已经把项目放到 github：<a target="_blank" rel="noopener" href="https://github.com/Sunny-lucking/howToBuildMyWebpack">https://github.com/Sunny-lucking/howToBuildMyWebpack</a> 可以卑微地要个star吗</p>
 <p>我们创建了add.js文件和minus.js文件,然后 在index.js中引入，再将index.js文件引入index.html。<br>代码如下:<br>add.js</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default (a,b)=&gt;&#123;</span><br><span class="line">  return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
